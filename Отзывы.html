@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы о нас</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Loader -->
+    <div id="loader" class="fixed inset-0 flex items-center justify-center bg-slate-950 z-50">
+        <div class="relative flex items-center justify-center">
+            <div class="absolute w-32 h-32 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
+            <div class="w-24 h-24 border-4 border-slate-700 rounded-full"></div>
+            <div class="absolute w-24 h-24 border-4 border-transparent border-t-blue-500 border-r-cyan-400 rounded-full animate-spin"></div>
+            <div class="absolute w-14 h-14 bg-slate-900 rounded-full flex items-center justify-center">
+                <span class="text-blue-400 font-bold text-lg">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="max-w-[1280px] mx-auto bg-white border-b border-slate-100">
+        <nav class="w-full z-20 top-0 start-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="./index.html" class="flex items-center space-x-3">
+                    <span class="self-center text-xl font-bold whitespace-nowrap">
+                        <img src="./images/logo.svg" alt="Logo">
+                    </span>
+                </a>
+                <div class="inline-flex md:order-2 space-x-3 md:space-x-0">
+                    <div class="gap-[20px] hidden lg:flex items-center">
+                        <a href="" class="text-sm font-medium text-slate-600 hover:text-blue-600 flex items-center gap-2">
+                            <img src="./images/calculator.svg" alt=""> Калькулятор
+                        </a>
+                        <a href="" class="text-sm font-medium text-slate-600 hover:text-blue-600 flex items-center gap-2">
+                            <img src="./images/shopping_cart.svg" alt=""> Корзина
+                        </a>
+                        <a href="" class="text-sm font-medium text-slate-600 hover:text-blue-600 flex items-center gap-2">
+                            <img src="./images/portrait.png" alt=""> Профиль
+                        </a>
+                    </div>
+                    <button data-collapse-toggle="navbar-cta" type="button"
+                        class="inline-flex items-center p-2 w-9 h-9 justify-center text-sm text-slate-500 rounded-lg md:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                        aria-controls="navbar-cta" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                    <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-slate-100 rounded-lg bg-slate-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+                        <li><a href="./index.html" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0">Каталог</a></li>
+                        <li><a href="./Акции.html" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0">Акции</a></li>
+                        <li><a href="#" class="block py-2 px-3 text-blue-600 font-semibold rounded md:p-0">Отзывы</a></li>
+                        <li><a href="./Онас.html" class="block py-2 px-3 text-slate-700 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0">О нас</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-[1280px] mx-auto px-4">
+        
+        <!-- Sarlavha qismi (Sharh qoldirish tugmasi qo'shildi) -->
+        <section class="py-10 border-b border-slate-200/60 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-8 bg-[#4960DA] rounded-full"></span>
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-normal text-slate-900 uppercase">
+                        Отзывы о нас
+                    </h1>
+                </div>
+                <button data-modal-target="review-modal" data-modal-toggle="review-modal" class="inline-flex justify-center items-center py-2.5 px-5 text-sm font-bold text-white bg-[#4960DA] hover:bg-blue-700 rounded-xl transition shadow-xs cursor-pointer">
+                    + Оставить отзыв
+                </button>
+            </div>
+        </section>
+
+        <!-- Sharhlar Grid Tizimi -->
+        <section class="py-4">
+            
+            <!-- 1-Qator -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start">
+                <div class="bg-white p-4 border border-slate-200/60 rounded-2xl shadow-xs">
+                    <img src="./images4/111.png" alt="" class="w-full h-auto object-cover rounded-xl">
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/N.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">Игорь Кулешов</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Добрый день! Хочу поделиться опытом работы с компанией "Фабрика Бетонов", так как был очень приятно удивлен их отношением. Нужен был бетон для фундамента, обзвонил несколько компаний и в итоге выбрал эту. По телефону менеджер был заинтересован помочь мне, отвечал на все вопросы, консультировал вежливо и понятным языком. Уже на месте рассчитали объем бетона, подобрали марку и обговорили сроки поставки. В день доставки, несмотря на пробки, привезли точно к назначенному времени и даже не ошиблись с объемом, был удивлен. Спасибо вам за работу!</p>
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/B.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">Владимир Гитченко</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Добрый день! Впервые заказал блоки в этой компании. Всё очень понравилось, доброжелательность и профессионализм менеджеров, приятная обстановка. Хочу особо отметить работу менеджера Марианны. Вежливая, внимательная, проконсультировала, всё подробно рассказала. Такие работники и создают впечатление о компании. Советую всём эту компанию!!!</p>
+                </div>
+            </div>
+
+            <!-- 2-Qator -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start">
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/y.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">yagodinskaya.vitaliya</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Отличная компания по производству бетона . Особенный Бёрге бетон . Ни разу не пожалели в выборе .Качество на высшем уровне,менеджера умницы. Все расскажут ,помогут в выборе,в расчете , во время доставят .Рекомендую 👍</p>
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/A.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">Антон</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Все хорошо, но Укладка пескоблоков (40/20/20) на поддоне ужасная, уложено не в шахматном порядке, пленки обматывают мало, при разгрузке погрузчиком часто просто рассыпается все.</p>
+                </div>
+                <div class="bg-white p-4 border border-slate-200/60 rounded-2xl shadow-xs">
+                    <img src="./images4/19.png" alt="" class="w-full h-auto object-cover rounded-xl">
+                </div>
+            </div>
+
+            <!-- 3-Qator -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start">
+                <div class="bg-white p-4 border border-slate-200/60 rounded-2xl shadow-xs">
+                    <img src="./images4/20.png" alt="" class="w-full h-auto object-cover rounded-xl">
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/n (2).svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">natusikk78</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Неплохая компания, немного подвели со сроками, договаривались на одно число, но company перенесла сроки, бетон хороший, его качество покажет только время.</p>
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/B.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">lena.khozyainova.92</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Залили фундамент в октябре месяце, все прошло на ура, менеджер дал совет по уходу за бетоном бёрге после как уложили в конструкцию, рада что есть еще люди которым не все равно) спасибо Ирине за оперативную доставку. Друзья советую!</p>
+                </div>
+            </div>
+
+            <!-- 4-Qator -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start">
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/y.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">yagodinskaya.vitaliya</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Отличная компания по производству бетона . Особенный Бёрге бетон . Ни разу не пожалели в выборе .Качество на высшем уровне,менеджера умницы. Все расскажут ,помогут в выборе,в расчете , во время доставят .Рекомендую 👍</p>
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/B.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">Владимир</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Заказал пескобетон на прошлой недели, Кристина молодец, посчитала объем и привезли как договорились , приятно иметь с ними дело, еще рассказали ...</p>
+                </div>
+                <div class="bg-white p-4 border border-slate-200/60 rounded-2xl shadow-xs">
+                    <img src="./images4/21.png" alt="" class="w-full h-auto object-cover rounded-xl">
+                </div>
+            </div>
+
+            <!-- 5-Qator -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-start">
+                <div class="bg-white p-4 border border-slate-200/60 rounded-2xl shadow-xs">
+                    <img src="./images4/22.png" alt="" class="w-full h-auto object-cover rounded-xl">
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/B.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">Владимир</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Заказал пескобетон на прошлой недели, Кристина молодец, посчитала объем и привезли как договорились , приятно иметь с ними дело, еще рассказали ...</p>
+                </div>
+                <div class="bg-white p-6 border border-slate-200/60 rounded-2xl shadow-xs min-h-[250px]">
+                    <div class="flex bg-[#F1F0FA] p-3 rounded-xl mb-4 items-center">
+                        <img src="./images4/y.svg" alt="" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-slate-900 text-sm">yagodinskaya.vitaliya</p>
+                            <p class="text-xs text-amber-500">⭐⭐⭐⭐⭐</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">Отличная компания по производство бетона . Особенный Бёрге бетон . Ни разу не пожалели в выборе .Качество на высшем уровне,менеджера умницы. Все расскажут ,помогут в выборе,в расчете , во время доставят .Рекомендую 👍</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Приезжайте к нам Section (Modal ulangan tugma bor) -->
+        <section class="py-12 border-t border-slate-200/60">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 uppercase">ПРИЕЗЖАЙТЕ К НАМ</h2>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                        Чтобы получить консультацию квалифицированных специалистов по применению строительных блоков для возведения частных и коммерческих зданий. Мы производим различные виды блоков, поэтому честно расскажем о преимуществах и недостатках каждого из них и подберем оптимальное решение под вашу задачу.[cite: 6]
+                    </p>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <button data-modal-target="call-modal" data-modal-toggle="call-modal" class="text-[#4960DA] bg-[#F1F0FA] hover:bg-blue-100 font-bold px-5 py-2.5 rounded-lg transition cursor-pointer">
+                            Заказать звонок
+                        </button>
+                        <p class="font-mono font-bold text-slate-900 text-base">+7 395 252-59-99</p>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden border border-slate-200/60">
+                    <img src="./images3/map.png" alt="Карта" class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Рассылки со скидками Section -->
+        <section class="py-12 border-t border-slate-200/60">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 uppercase">РАССЫЛКИ СО СКИДКАМИ</h2>
+                        <img src="./images3/fire.svg" alt="" class="w-6 h-6">
+                    </div>
+                    <p class="text-slate-600 text-sm">Оставьте свою электронную почту, чтобы получать информацию о новинках, скидках и акциях.[cite: 6]</p>
+                </div>
+                <div class="flex justify-center md:justify-end">
+                    <img src="./images3/2EN 1.png" alt="" class="max-w-[60%] h-auto">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL 1: Sharh Qoldirish Modali -->
+    <div id="review-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black/40">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-2xl shadow-sm">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b border-slate-100 rounded-t">
+                    <h3 class="text-lg font-bold text-slate-900">Оставить отзыв</h3>
+                    <button type="button" class="text-slate-400 bg-transparent hover:bg-slate-100 hover:text-slate-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="review-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form class="p-4 md:p-5 space-y-4">
+                    <div>
+                        <label class="block mb-2 text-xs font-bold text-slate-700 uppercase">Ваше Имя</label>
+                        <input type="text" placeholder="Иван Иванов" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-xs font-bold text-slate-700 uppercase">Оценка (1-5)</label>
+                        <select class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option>⭐⭐⭐⭐⭐ (5)</option>
+                            <option>⭐⭐⭐⭐ (4)</option>
+                            <option>⭐⭐⭐ (3)</option>
+                            <option>⭐⭐ (2)</option>
+                            <option>⭐ (1)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-xs font-bold text-slate-700 uppercase">Текст отзыва</label>
+                        <textarea rows="4" placeholder="Напишите ваш отзыв здесь..." class="block p-2.5 w-full text-sm text-slate-900 bg-slate-50 rounded-xl border border-slate-200 focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-[#4960DA] hover:bg-blue-700 font-bold rounded-xl text-sm px-5 py-2.5 text-center transition cursor-pointer">Отправить отзыв</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Qayta Qo'ng'iroq Modali (Заказать звонок) -->
+    <div id="call-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black/40">
+        <div class="relative p-4 w-full max-w-sm max-h-full">
+            <div class="relative bg-white rounded-2xl shadow-sm">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b border-slate-100 rounded-t">
+                    <h3 class="text-lg font-bold text-slate-900">Заказать звонок</h3>
+                    <button type="button" class="text-slate-400 bg-transparent hover:bg-slate-100 hover:text-slate-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="call-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form class="p-4 md:p-5 space-y-4">
+                    <p class="text-xs text-slate-500 leading-normal">Оставьте свои контакты, и наш квалифицированный специалист свяжется с вами в течение 15 минут.</p>
+                    <div>
+                        <label class="block mb-2 text-xs font-bold text-slate-700 uppercase">Номер телефона</label>
+                        <input type="tel" placeholder="+7 (___) ___-__-__" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-green-600 hover:bg-green-700 font-bold rounded-xl text-sm px-5 py-2.5 text-center transition cursor-pointer">Жду звонка</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-[#F1F0FA] text-slate-600 mt-12 px-4 border-t border-slate-200">
+        <div class="max-w-[1280px] mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <div class="space-y-2 text-xs">
+                <p class="hover:text-blue-600 cursor-pointer">Оплата</p>
+                <p class="hover:text-blue-600 cursor-pointer">Контакты</p>
+                <p class="hover:text-blue-600 cursor-pointer">Поставщикам</p>
+                <p class="hover:text-blue-600 cursor-pointer">Демонстрация</p>
+                <p class="hover:text-blue-600 cursor-pointer">Реклама на site</p>
+            </div>
+            <div class="space-y-2 text-xs">
+                <p class="hover:text-blue-600 cursor-pointer">Доставка</p>
+                <p class="hover:text-blue-600 cursor-pointer">Достижения</p>
+                <p class="hover:text-blue-600 cursor-pointer">Лаборатория</p>
+                <p class="hover:text-blue-600 cursor-pointer">Карточка предприятия</p>
+                <p class="hover:text-blue-600 cursor-pointer">Политика конфиденциальности</p>
+            </div>  
+            <div class="space-y-2 text-xs">
+                <p class="font-bold text-slate-800">Каталог</p>
+                <p class="hover:text-blue-600 cursor-pointer">Бетон и жидкие смеси</p>
+                <p class="hover:text-blue-600 cursor-pointer">Заборы и бордюры</p>
+                <p class="hover:text-blue-600 cursor-pointer">Утеплители</p>
+                <p class="hover:text-blue-600 cursor-pointer">Сухие смеси</p>
+            </div>
+            <div class="space-y-2 text-xs">
+                <p class="hover:text-blue-600 cursor-pointer">Облицовочный кирпич</p>
+                <p class="hover:text-blue-600 cursor-pointer">Строительные блоки</p>
+                <p class="hover:text-blue-600 cursor-pointer">Инструменты и сопутствующие товары</p>
+                <p class="hover:text-blue-600 cursor-pointer">Тротуарная плитка</p>
+            </div>
+            <div class="col-span-2 lg:col-span-1 flex items-start lg:justify-end">
+                <img src="./images3/Group 477.png" alt="" class="w-24 h-auto">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Skriptlar (Flowbite modallar ishlashi uchun oxirida bo'lishi kerak) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script src="./main.js"></script>
+    <script src='https://cdn.jotfor.ms/agent/embedjs/019eda21240c7ddb81fd0f7a8ec68a83fea0/embed.js'></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#loader').fadeOut('slow');
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

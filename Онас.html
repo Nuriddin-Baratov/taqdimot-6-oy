@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" class="overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" class="w-full" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Ekran kichrayganda biron bir element tashqariga chiqib ketishini qat'iy cheklash */
+        @media (max-width: 375px) {
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden bg-white">
+
+    <div id="loader" class="fixed inset-0 flex items-center justify-center bg-slate-950 z-50">
+        <div class="relative flex items-center justify-center">
+            <div class="absolute w-32 h-32 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
+            <div class="w-24 h-24 border-4 border-slate-700 rounded-full"></div>
+            <div class="absolute w-24 h-24 border-4 border-transparent border-t-blue-500 border-r-cyan-400 rounded-full animate-spin"></div>
+            <div class="absolute w-14 h-14 bg-slate-900 rounded-full flex items-center justify-center">
+                <span class="text-blue-400 font-bold text-lg">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="max-w-[1280px] mx-auto w-full px-4">
+        <nav class="bg-neutral-primary w-full z-20 top-0 start-0 border-b border-default">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
+                <a href="./index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <span class="self-center text-xl text-heading font-bold whitespace-nowrap">
+                        <img src="./images/logo.svg" alt="Logo">
+                    </span>
+                </a>
+                <div class="inline-flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
+                    <div class="gap-[10px] hidden min-[941px]:flex">
+                        <a href="" class="mr-[20px]"><button class="flex items-center gap-1"><img src="./images/calculator.svg" alt="">Калькулятор</button></a>
+                        <a href="" class="mr-[10px]"><button class="flex items-center gap-1"><img src="./images/shopping_cart.svg" alt="">Корзина</button></a>
+                        <a href=""><button class="flex items-center gap-1"><img src="./images/portrait.png" alt="">Профиль</button></a>
+                    </div>
+                    <button data-collapse-toggle="navbar-cta" type="button"
+                        class="inline-flex items-center p-2 w-9 h-9 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+                        aria-controls="navbar-cta" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                    <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+                        <li><a href="./index.html" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 hover:text-blue-700">Каталог</a></li>
+                        <li><a href="./Акции.html" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 hover:text-blue-700">Акции</a></li>
+                        <li><a href="./Отзывы.html" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 hover:text-blue-700">Отзывы</a></li>
+                        <li><a href="#" class="block py-2 px-3 text-heading font-bold rounded md:p-0 text-blue-700">О нас</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="w-full">
+        
+        <section class="py-[40px] px-4 max-w-[1200px] mx-auto">
+            <div class="grid grid-cols-2 gap-8 max-[1030px]:grid-cols-1">
+                <div class="w-full">
+                    <h1 class="text-[35px] font-bold mb-4">О КОМПАНИИ</h1>
+                    <p class="text-gray-700 leading-relaxed text-justify text-sm md:text-base">
+                        Промышленный комплекс "Фабрика Бетонов" - ведущий производитель современных строительных материалов для частного и коммерческого строительства в Восточной Сибири! <br><br>
+                        Появившись на рынке в начале 21 века, company прочно укрепила свои позиции, из года в год увеличивая и совершенствуя техническую оснащенность, которая на сегодняшний день включает 11 специализированных заводов, оборудованных сверхточными, автоматизированными производственными линиями для выпуска продукции, соответствующей современным стандартам. <br><br>
+                        На заводах налажено производство полистиролбетона, армированного газобетона, пескоблоков, керамзитобетонных блоков, товарного бетона, бордюров и сухих смесей, а также других первоклассных строительных материалов. Накопленный колоссальный опыт в этой области позволяет справляться даже с трудно разрешимыми задачами. Мы честно и без прикрас сообщаем потребителю о преимуществах и недостатках того или иного материала, помогаем принять разумно правильное решение. <br><br>
+                        Собственный автопарк специализированной техники обеспечивает 100%-ое соблюдение сроков поставки на объекты заказчиков - частных домовладельцев, муниципальных, коммерческих структур и строительных подрядчиков. Поставляем любые объемы быстро, надежно и по оптимальным ценам.
+                    </p>
+                </div>
+                
+                <div class="w-full space-y-4">
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">168</h1>
+                        <p class="text-[18px] font-bold my-1">Единиц спецтехники</p>
+                        <p class="text-sm opacity-90">Наличие современной спецтехники позволяет нам добросовестно исполнять свои обязательства перед клиентом, быстро и качественно доставляя заказы.</p>
+                    </div>
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">12</h1>
+                        <p class="text-[18px] font-bold my-1">Заводов</p>
+                        <p class="text-sm opacity-90">Наличие современной спецтехники позволяет нам добросовестно исполнять свои обязательства перед клиентом, быстро и качественно доставляя заказы.</p>
+                    </div>
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">45.000 м3</h1>
+                        <p class="text-[18px] font-bold my-1">Склад готовой продукции</p>
+                        <p class="text-sm opacity-90">If all walls made of our blocks were put in one line, it would make a continuous wall from Berlin to Vladivostok.</p>
+                    </div>
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">72 378</h1>
+                        <p class="text-[18px] font-bold my-1">Домов</p>
+                        <p class="text-sm opacity-90">Именно столько (и даже больше) комфортабельных домов уже возведено из произведенных нашей</p>
+                    </div>
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">14.000 км</h1>
+                        <p class="text-[18px] font-bold my-1">Заборов</p>
+                        <p class="text-sm opacity-90">Если все заборы из наших блоков поставить в одну линию, получится сплошная стена от Берлина до Владивостока.</p>
+                    </div>
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">37 241</h1>
+                        <p class="text-[18px] font-bold my-1">Фундаментов</p>
+                        <p class="text-sm opacity-90">Из нашего бетона возвели более 35 000 надежных, долговечных и сейсмоустойчивых фундаментов.</p>
+                    </div>
+                    <div class="bg-[#4960DA] rounded-[10px] p-[20px] text-white">
+                        <h1 class="font-bold text-3xl">42.520 км</h1>
+                        <p class="text-[18px] font-bold my-1">Бордюров</p>
+                        <p class="text-sm opacity-90">Линия из всех выпущенных газонных и дорожных бордюров обогнула Землю по экватору уже один раз.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-[40px] px-4 max-w-[1200px] mx-auto">
+            <h1 class="text-[35px] font-bold mb-6">ГЕОГРАФИЯ ПОСТАВОК</h1>
+            <div class="grid grid-cols-2 max-[760px]:grid-cols-1 gap-8 items-center">
+                <div class="w-full">
+                    <img src="./images3/Group 461.png" alt="Map" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-6">
+                    <div class="p-4 border border-gray-100 rounded-[10px] shadow-sm bg-white">
+                        <h1 class="font-bold text-lg text-gray-900">Красноярск</h1>
+                        <p class="text-gray-600 text-sm mt-1">ул. Шахтеров К 33, СТ. 8 <br> krasnoyarsk@fabrika-betonov.ru <br> +7 391 292-04-29</p>
+                    </div>
+                    <div class="p-4 border border-gray-100 rounded-[10px] shadow-sm bg-white">
+                        <h1 class="font-bold text-lg text-gray-900">Тайшет</h1>
+                        <p class="text-gray-600 text-sm mt-1">ул. Шахтеров К 33, СТ. 8 <br> krasnoyarsk@fabrika-betonov.ru <br> +7 391 292-04-29</p>
+                    </div>
+                    <div class="p-4 border border-gray-100 rounded-[10px] shadow-sm bg-white">
+                        <h1 class="font-bold text-lg text-gray-900">Братск</h1>
+                        <p class="text-gray-600 text-sm mt-1">ул. Шахтеров К 33, СТ. 8 <br> krasnoyarsk@fabrika-betonov.ru <br> +7 391 292-04-29</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#F1F0FA] py-[60px] px-4 w-full">
+            <div class="max-w-[1200px] mx-auto">
+                <h1 class="text-[35px] font-bold mb-6">ПРОИЗВОДСТВЕННЫЕ МОЩНОСТИ</h1>
+                <div class="grid grid-cols-3 gap-[30px] max-[1025px]:grid-cols-2 max-[650px]:grid-cols-1">
+                    
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white rounded-[10px] min-h-[220px] p-[15px] shadow-sm">
+                            <h1 class="text-[20px] font-bold mb-2">Четыре бетонных завода</h1>
+                            <p class="text-sm text-gray-600">Современные заводы, обеспечивающие получение высококачественного бетона различных марок. Благодаря высокому уровню автоматизации производства гарантируется точное соответствие продукции существующим стандартам.</p>
+                        </div>
+                        <div class="bg-white rounded-[10px] mt-[10px] flex justify-between p-[15px] shadow-sm">
+                            <p class="text-sm font-medium text-gray-700">Производительность</p>
+                            <p class="text-[red] font-bold text-sm">500 м3 в час</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white rounded-[10px] min-h-[220px] p-[15px] shadow-sm">
+                            <h1 class="text-[20px] font-bold mb-2">Завод молотого утеплителя</h1>
+                            <p class="text-sm text-gray-600">Предприятие производит эффективный и недорогой утеплитель, широко используемый в строительстве. Применение современного оборудования обеспечивает производство утеплителя в любых необходимых объемах.</p>
+                        </div>
+                        <div class="bg-white rounded-[10px] mt-[10px] flex justify-between p-[15px] shadow-sm">
+                            <p class="text-sm font-medium text-gray-700">Производительность</p>
+                            <p class="text-[red] font-bold text-sm">35 м3 в день</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white rounded-[10px] min-h-[220px] p-[15px] shadow-sm">
+                            <h1 class="text-[20px] font-bold mb-2">Линия по выпуску утеплителя</h1>
+                            <p class="text-sm text-gray-600">Плиты утеплителя из  полистиролбетона обеспечивают эффективную и недорогую теплоизоляцию для частных домов, административных и производственных зданий.</p>
+                        </div>
+                        <div class="bg-white rounded-[10px] mt-[10px] flex justify-between p-[15px] shadow-sm">
+                            <p class="text-sm font-medium text-gray-700">Производительность</p>
+                            <p class="text-[red] font-bold text-sm">50 м3 в день</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white rounded-[10px] min-h-[220px] p-[15px] shadow-sm">
+                            <h1 class="text-[20px] font-bold mb-2">2 производственные линии по выпуску пескоблоков</h1>
+                            <p class="text-sm text-gray-600">Пескобетонные блоки производятся на современных немецких автоматизированных линиях с использованием гипервибропресса. Обладают высокой прочностью, отличаются выгодной ценой, экологически безопасны.</p>
+                        </div>
+                        <div class="bg-white rounded-[10px] mt-[10px] flex justify-between p-[15px] shadow-sm">
+                            <p class="text-sm font-medium text-gray-700">Производительность</p>
+                            <p class="text-[red] font-bold text-sm">70 м3 в день</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white rounded-[10px] min-h-[220px] p-[15px] shadow-sm">
+                            <h1 class="text-[20px] font-bold mb-2">Линия по выпуску автоклавного газобетона</h1>
+                            <p class="text-sm text-gray-600">Автоклавный газобетон - новый материал придуманный в Германии, завоевал хорошую репутацию в Сибирских регионах за счет активной рекламы производителями. Имеет как недостатки, так и достоинства.</p>
+                        </div>
+                        <div class="bg-white rounded-[10px] mt-[10px] flex justify-between p-[15px] shadow-sm">
+                            <p class="text-sm font-medium text-gray-700">Производительность</p>
+                            <p class="text-[red] font-bold text-sm">150 м3 в день</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between">
+                        <div class="bg-white rounded-[10px] min-h-[220px] p-[15px] shadow-sm">
+                            <h1 class="text-[20px] font-bold mb-2">Линия по выпуску конструкционных элементов</h1>
+                            <p class="text-sm text-gray-600">Армированные арматурой надпроемные перемычки и U-образные блоки для сейсмопояса из полистиролбетона отличаются высокой несущей способностью и отличными теплотехническими характеристиками по оптимальным ценам.</p>
+                        </div>
+                        <div class="bg-white rounded-[10px] mt-[10px] flex justify-between p-[15px] shadow-sm">
+                            <p class="text-sm font-medium text-gray-700">Производительность</p>
+                            <p class="text-[red] font-bold text-sm">180 ед. в день</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-[60px] px-4 max-w-[1200px] mx-auto">
+            <div class="grid grid-cols-2 max-[941px]:grid-cols-1 gap-8 items-center">
+                <div>
+                    <h1 class="text-[35px] font-bold mb-4">ПРИЕЗЖАЙТЕ К НАМ</h1>
+                    <p class="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
+                        Чтобы получить консультацию квалифицированных специалистов по применению строительных блоков для возведения частных и коммерческих зданий. Мы производим различные виды блоков, поэтому честно расскажем о преимуществах и недостатках каждого из них и подберем оптимальное решение под вашу задачу.
+                    </p>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <button data-modal-target="callback-modal" data-modal-toggle="callback-modal" class="text-[#4960DA] bg-[#F1F0FA] font-semibold px-4 py-2.5 rounded-[5px] hover:bg-blue-100 transition">Заказать звонок</button>
+                        <p class="font-bold text-gray-900 text-lg">+7 395 252-59-99</p>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <img src="./images3/map.png" alt="Map Location" class="w-full h-auto rounded-xl">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-[40px] px-4 max-w-[1200px] mx-auto">
+            <div class="grid grid-cols-2 max-[780px]:grid-cols-1 gap-8 items-center">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <h1 class="text-[28px] md:text-[35px] font-bold">РАССЫЛКИ СО СКИДКАМИ</h1>
+                        <img src="./images3/fire.svg" alt="Fire" class="w-8 h-8">
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">Оставьте свою электронную почту, чтобы получать информацию о новинках, скидках и акциях.</p>
+                </div>
+                <div class="flex justify-center md:justify-end">
+                    <img src="./images3/2EN 1.png" alt="Promo Promo" class="w-full max-w-[320px] h-auto object-contain">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Oyna (Flowbite interfeysi asosida) -->
+    <div id="callback-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-xl shadow-lg border border-gray-100">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-100">
+                    <h3 class="text-xl font-bold text-gray-900 uppercase">
+                        Заказать звонок
+                    </h3>
+                    <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="callback-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5">
+                    <form class="space-y-4" action="#">
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Ваше имя</label>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Иван Иванов" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Номер телефона</label>
+                            <input type="tel" name="phone" id="phone" class="bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-[5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="+7 (999) 000-00-00" required>
+                        </div>
+                        <button type="submit" class="w-full text-white bg-[#4960DA] hover:bg-blue-700 font-bold rounded-[5px] text-sm px-5 py-3 text-center transition">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-[40px] bg-[#F1F0FA] w-full px-4 border-t border-gray-200">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-5 gap-[30px] max-[1035px]:grid-cols-4 max-[850px]:grid-cols-3 max-[650px]:grid-cols-2 max-[500px]:grid-cols-1">
+            <div>
+                <p class="py-1 text-sm text-gray-600">Оплата</p>
+                <p class="py-1 text-sm text-gray-600">Контакты</p>
+                <p class="py-1 text-sm text-gray-600">Поставщикам</p>
+                <p class="py-1 text-sm text-gray-600">Демонстрация</p>
+                <p class="py-1 text-sm text-gray-600">Реклама на сайте</p>
+            </div>
+            <div>
+                <p class="py-1 text-sm text-gray-600">Доставка</p>
+                <p class="py-1 text-sm text-gray-600">Достижения</p>
+                <p class="py-1 text-sm text-gray-600">Лаборатория</p>
+                <p class="py-1 text-sm text-gray-600">Карточка предприятия</p>
+                <p class="py-1 text-sm text-gray-600">Политика конфиденциальности</p>
+            </div>
+            <div>
+                <p class="font-bold mb-1 text-gray-800">Каталог</p>
+                <p class="py-1 text-sm text-gray-600">Бетон и жидкие смеси</p>
+                <p class="py-1 text-sm text-gray-600">Заборы и бордюры</p>
+                <p class="py-1 text-sm text-gray-600">Утеплители</p>
+                <p class="py-1 text-sm text-gray-600">Сухие смеси</p>
+            </div>
+            <div>
+                <p class="py-1 text-sm text-gray-600">Облицовочный кирпич</p>
+                <p class="py-1 text-sm text-gray-600">Строительные blocks</p>
+                <p class="py-1 text-sm text-gray-600">Инструменты и сопутствующие товары</p>
+                <p class="py-1 text-sm text-gray-600">Тротуарная плитка</p>
+            </div>
+            <div class="flex items-center">
+                <img src="./images3/Group 477.png" alt="Footer Logo" class="w-1/2 md:w-full max-w-[120px]">
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script src="./main.js"></script>
+    <script src='https://cdn.jotfor.ms/agent/embedjs/019eda21240c7ddb81fd0f7a8ec68a83fea0/embed.js'></script>
+</body>
+
+</html>
