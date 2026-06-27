@@ -11,3 +11,13 @@ window.addEventListener("load", () => {
     loader.remove();
   }, 700);
 });
+
+
+
+
+var dark = document.querySelector(".dark");
+var body = document.querySelector(".body");
+
+dark.addEventListener("click" , function(){
+    body.classList.toggle("dark-mode")
+})

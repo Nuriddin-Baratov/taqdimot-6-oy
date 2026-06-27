@@ -15,6 +15,27 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Tailwind 4 da dark mode "class" strategiyasi bilan ishlaydi -->
+    <script>
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            darkMode: 'class'
+        };
+    </script>
+
+    <!-- Sahifa yuklanishidan oldin to'g'ri temani <html> ga qo'yish (flash bo'lmasligi uchun) -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (saved === 'dark' || (!saved && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) { /* localStorage yo'q bo'lsa, light bilan davom etamiz */ }
+        })();
+    </script>
+
     <style>
         @media (max-width: 375px) {
 
@@ -40,10 +61,43 @@
             background: #4960DA !important;
             color: #ffffff !important;
         }
+
+        .dark .owl-theme .owl-nav [class*='owl-'] {
+            background: #1e293b !important;
+            color: #e2e8f0 !important;
+        }
+
+        .dark .owl-theme .owl-nav [class*='owl-']:hover {
+            background: #4960DA !important;
+            color: #ffffff !important;
+        }
+
+        .dark .owl-theme .owl-dots .owl-dot span {
+            background: #475569 !important;
+        }
+
+        .dark .owl-theme .owl-dots .owl-dot.active span {
+            background: #4960DA !important;
+        }
+
+        body, header, footer, section, .bg-white, .bg-slate-50 {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* DARK MODE: body fon rangi har doim sof qora bo'lishi uchun
+           to'g'ridan-to'g'ri CSS orqali majburlab qo'yamiz */
+        html.dark body {
+            background-color: #000000 !important;
+        }
+
+        .theme-toggle .icon-moon { display: inline-block; }
+        .theme-toggle .icon-sun { display: none; }
+        .dark .theme-toggle .icon-moon { display: none; }
+        .dark .theme-toggle .icon-sun { display: inline-block; }
     </style>
 </head>
 
-<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased">
+<body class="overflow-x-hidden bg-slate-50 dark:bg-black text-slate-800 dark:text-slate-200 antialiased">
 
     <div id="loader" class="fixed inset-0 flex items-center justify-center bg-slate-950 z-50">
         <div class="relative flex items-center justify-center">
@@ -58,31 +112,27 @@
         </div>
     </div>
 
-    <header class="w-full bg-white border-b border-slate-100 sticky top-0 z-40 backdrop-blur-md bg-white/95">
+    <header class="w-full bg-white dark:bg-black border-b border-slate-100 dark:border-slate-800 sticky top-0 z-40 backdrop-blur-md bg-white/95 dark:bg-black/95">
         <nav class="max-w-[1280px] mx-auto px-4 py-4">
             <div class="flex flex-wrap items-center justify-between mx-auto">
                 <a href="./index.html" class="flex items-center space-x-3 transition transform hover:scale-105">
                     <span class="self-center text-xl font-bold whitespace-nowrap">
-                        <img src="./images/logo.svg" alt="Logo" class="h-8">
+                        <img src="./images/logo.svg" alt="Logo" class="h-8 dark:brightness-0 dark:invert">
                     </span>
                 </a>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 items-center">
-                    <div class="gap-6 hidden lg:flex">
-                        <a href=""
-                            class="text-sm font-medium text-slate-600 hover:text-[#4960DA] flex items-center gap-2 transition">
-                            <img src="./images/calculator.svg" alt="" class="w-4 h-4"> Калькулятор
-                        </a>
-                        <a href=""
-                            class="text-sm font-medium text-slate-600 hover:text-[#4960DA] flex items-center gap-2 transition">
-                            <img src="./images/shopping_cart.svg" alt="" class="w-4 h-4"> Корзина
-                        </a>
-                        <a href=""
-                            class="text-sm font-medium text-slate-600 hover:text-[#4960DA] flex items-center gap-2 transition">
-                            <img src="./images/portrait.png" alt="" class="w-4 h-4"> Профиль
-                        </a>
-                    </div>
+                    <button id="theme-toggle" type="button"
+                        class="theme-toggle p-2 rounded-xl text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+                        aria-label="Переключить тему">
+                        <svg class="icon-moon w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                        </svg>
+                        <svg class="icon-sun w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
                     <button data-collapse-toggle="navbar-cta" type="button"
-                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-slate-500 rounded-xl md:hidden hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-slate-500 dark:text-slate-300 rounded-xl md:hidden hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-700"
                         aria-controls="navbar-cta" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -94,18 +144,18 @@
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                     <ul
-                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-slate-100 rounded-xl bg-slate-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-slate-100 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-900 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
                         <li><a href="./index.html"
-                                class="block py-2 px-3 text-slate-600 rounded-lg hover:bg-slate-100 md:hover:bg-transparent md:p-0 hover:text-[#4960DA] transition">Каталог</a>
+                                class="block py-2 px-3 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 md:hover:bg-transparent md:p-0 hover:text-[#4960DA] dark:hover:text-blue-400 transition">Каталог</a>
                         </li>
                         <li><a href="#"
-                                class="block py-2 px-3 text-[#4960DA] font-semibold bg-blue-50/50 md:bg-transparent rounded-lg md:p-0 transition">Акции</a>
+                                class="block py-2 px-3 text-[#4960DA] dark:text-blue-400 font-semibold bg-blue-50/50 dark:bg-blue-500/10 md:bg-transparent rounded-lg md:p-0 transition">Акции</a>
                         </li>
                         <li><a href="./Отзывы.html"
-                                class="block py-2 px-3 text-slate-600 rounded-lg hover:bg-slate-100 md:hover:bg-transparent md:p-0 hover:text-[#4960DA] transition">Отзывы</a>
+                                class="block py-2 px-3 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 md:hover:bg-transparent md:p-0 hover:text-[#4960DA] dark:hover:text-blue-400 transition">Отзывы</a>
                         </li>
                         <li><a href="./Онас.html"
-                                class="block py-2 px-3 text-slate-600 rounded-lg hover:bg-slate-100 md:hover:bg-transparent md:p-0 hover:text-[#4960DA] transition">О
+                                class="block py-2 px-3 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 md:hover:bg-transparent md:p-0 hover:text-[#4960DA] dark:hover:text-blue-400 transition">О
                                 нас</a></li>
                     </ul>
                 </div>
@@ -117,7 +167,7 @@
 
         <section class="px-4 mb-10">
             <div
-                class="owl-carousel owl-theme rounded-2xl overflow-hidden shadow-sm bg-white p-2 border border-slate-200/60">
+                class="owl-carousel owl-theme rounded-2xl overflow-hidden shadow-sm bg-white dark:bg-slate-900 p-2 border border-slate-200/60 dark:border-slate-800">
                 <div class="item"><img src="./images3/sale1.png" alt="Sale 1" class="rounded-xl w-full object-cover">
                 </div>
                 <div class="item"><img src="./images3/sale2.png" alt="Sale 2" class="rounded-xl w-full object-cover">
@@ -134,22 +184,22 @@
         </section>
 
         <section class="px-4">
-            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-200/60 mb-8">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-10 shadow-sm border border-slate-200/60 dark:border-slate-800 mb-8">
 
                 <div
-                    class="inline-flex items-center gap-2 bg-red-50 border border-red-100 text-red-600 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+                    class="inline-flex items-center gap-2 bg-red-50 dark:bg-red-500/10 border border-red-100 dark:border-red-500/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
                     🔥 Горячее предложение
                 </div>
                 <h1
-                    class="text-[26px] md:text-[38px] font-black text-slate-900 leading-tight tracking-tight mb-4 uppercase">
+                    class="text-[26px] md:text-[38px] font-black text-slate-900 dark:text-white leading-tight tracking-tight mb-4 uppercase">
                     МЕГА СКИДКА ПОЛИСТИРОЛБЕТОН 3900 РУБ.
                 </h1>
 
                 <div class="max-w-4xl border-l-4 border-[#4960DA] pl-4 md:pl-6 my-5">
-                    <h2 class="text-[20px] md:text-[26px] font-bold text-slate-800 mb-2">
+                    <h2 class="text-[20px] md:text-[26px] font-bold text-slate-800 dark:text-slate-200 mb-2">
                         Строительный season уже близко!
                     </h2>
-                    <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                    <p class="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                         Пока конкуренты повышают цены - мы их снижаем!...
                     </p>
                 </div>
@@ -162,101 +212,101 @@
                 </div>
 
                 <div class="mt-8">
-                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                         <span class="w-1.5 h-5 bg-[#4960DA] rounded-full"></span> Нам доверяют профессионалы (Список
                         партнеров):
                     </h3>
 
-                    <div class="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs">
-                        <table class="w-full text-left border-collapse bg-white">
+                    <div class="overflow-x-auto rounded-xl border border-slate-200/80 dark:border-slate-700 shadow-xs">
+                        <table class="w-full text-left border-collapse bg-white dark:bg-slate-900">
                             <thead>
                                 <tr
-                                    class="bg-slate-50 border-b border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider">
+                                    class="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-wider">
                                     <th class="p-4">Партнёр</th>
                                     <th class="p-4">Адрес (Сайт)</th>
                                     <th class="p-4">Телефон</th>
                                     <th class="p-4">Сайт (Офис/Адрес)</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Артель Войткевича</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.megaartel.ru</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 64-01-34</td>
-                                    <td class="p-4 text-slate-500">ул.Помяловского, 1, оф. 444</td>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-sm text-slate-700 dark:text-slate-300">
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Артель Войткевича</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.megaartel.ru</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 64-01-34</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Помяловского, 1, оф. 444</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Стройтехпроект</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.stpirkut.ru</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 41-50-10</td>
-                                    <td class="p-4 text-slate-500">ул.Советская, 176б, оф.508</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Стройтехпроект</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.stpirkut.ru</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 41-50-10</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Советская, 176б, оф.508</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Байкал дом</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.baikal-dom.com</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 71-60-73</td>
-                                    <td class="p-4 text-slate-500">ул.Д.События, 57, оф.403</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Байкал дом</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.baikal-dom.com</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 71-60-73</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Д.События, 57, оф.403</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Дом Град</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.stroy-dom-irkutsk.ru</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 40-72-90</td>
-                                    <td class="p-4 text-slate-500">ул.Седова, 48, оф.205</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Дом Град</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.stroy-dom-irkutsk.ru</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 40-72-90</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Седова, 48, оф.205</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Сибирская основа</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.sibosnova.ru</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 98-75-73</td>
-                                    <td class="p-4 text-slate-500">ул.Ширямова, 2А, оф.16</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Сибирская основа</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.sibosnova.ru</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 98-75-73</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Ширямова, 2А, оф.16</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Леса сибири</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.lesa-sibiry.ru</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (964) 357-57-97</td>
-                                    <td class="p-4 text-slate-500">Амурский проезд, 16</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Леса сибири</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.lesa-sibiry.ru</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (964) 357-57-97</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">Амурский проезд, 16</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Бригада Антона Фокина</td>
-                                    <td class="p-4 text-slate-400">—</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (950) 140-14-34</td>
-                                    <td class="p-4 text-slate-400">—</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Бригада Антона Фокина</td>
+                                    <td class="p-4 text-slate-400 dark:text-slate-500">—</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (950) 140-14-34</td>
+                                    <td class="p-4 text-slate-400 dark:text-slate-500">—</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Традиция</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.традиция38.рф</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 99-00-95</td>
-                                    <td class="p-4 text-slate-500">ул.С.Разина, 27, оф.801/7</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Традиция</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.традиция38.рф</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 99-00-95</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.С.Разина, 27, оф.801/7</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">АСК Доминго</td>
-                                    <td class="p-4 text-[#4960DA] font-medium">www.domingoirk.ru</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (3952) 55-45-44</td>
-                                    <td class="p-4 text-slate-500">ул.Трудовая 60, оф.107</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">АСК Доминго</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium">www.domingoirk.ru</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (3952) 55-45-44</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Трудовая 60, оф.107</td>
                                 </tr>
-                                <tr class="hover:bg-slate-50/80 transition">
-                                    <td class="p-4 font-semibold text-slate-900">Мир домов</td>
-                                    <td class="p-4 text-[#4960DA] font-medium break-all">https://vk.com/mirdomov38</td>
-                                    <td class="p-4 font-mono text-slate-900">8 (904) 110-40-50</td>
-                                    <td class="p-4 text-slate-500">ул.Лермонтова, 78, оф.327</td>
+                                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition">
+                                    <td class="p-4 font-semibold text-slate-900 dark:text-white">Мир домов</td>
+                                    <td class="p-4 text-[#4960DA] dark:text-blue-400 font-medium break-all">https://vk.com/mirdomov38</td>
+                                    <td class="p-4 font-mono text-slate-900 dark:text-white">8 (904) 110-40-50</td>
+                                    <td class="p-4 text-slate-500 dark:text-slate-400">ул.Лермонтова, 78, оф.327</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="text-right mt-4 text-slate-600 text-sm">
+                <div class="text-right mt-4 text-slate-600 dark:text-slate-400 text-sm">
                     Более подробная информация у менеджеров отдела по телефону:
-                    <span class="font-bold text-slate-900 text-base ml-1">+7 395 250-45-80</span>
+                    <span class="font-bold text-slate-900 dark:text-white text-base ml-1">+7 395 250-45-80</span>
                 </div>
             </div>
         </section>
 
         <section class="px-4 mb-8">
             <div
-                class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200/60 flex flex-col lg:flex-row items-center gap-8">
+                class="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200/60 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-8">
                 <div class="flex-1">
-                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 mb-4 uppercase">ПРИЕЗЖАЙТЕ К НАМ</h2>
-                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-4 uppercase">ПРИЕЗЖАЙТЕ К НАМ</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed mb-6">
                         Чтобы получить консультацию квалифицированных специалистов по применению строительных блоков для
                         возведения частных и коммерческих зданий. Мы производим различные виды блоков, поэтому честно
                         расскажем о преимуществах и недостатках каждого из них и подберем оптимальное решение под вашу
@@ -267,14 +317,14 @@
                             class="bg-[#4960DA] hover:bg-blue-700 text-white font-bold px-5 py-3 rounded-xl transition shadow-xs">
                             Заказать звонок
                         </button>
-                        <span class="font-mono font-bold text-slate-900 text-lg flex items-center gap-2">
+                        <span class="font-mono font-bold text-slate-900 dark:text-white text-lg flex items-center gap-2">
                             📞 +7 395 252-59-99
                         </span>
                     </div>
                 </div>
 
                 <div
-                    class="w-full lg:w-[45%] relative rounded-xl overflow-hidden shadow-xs border border-slate-100 min-h-[250px] bg-slate-100 flex">
+                    class="w-full lg:w-[45%] relative rounded-xl overflow-hidden shadow-xs border border-slate-100 dark:border-slate-800 min-h-[250px] bg-slate-100 dark:bg-slate-800 flex">
                     <img src="./images3/map.png" alt="Карта проезда"
                         class="w-full h-[260px] object-cover transition transform hover:scale-[1.02] duration-300">
                 </div>
@@ -283,7 +333,7 @@
 
         <section class="px-4">
             <div
-                class="bg-gradient-to-br from-slate-900 via-slate-850 to-blue-950 text-white rounded-2xl p-6 md:p-8 shadow-md flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+                class="bg-gradient-to-br from-slate-900 via-slate-850 to-blue-950 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950 text-white rounded-2xl p-6 md:p-8 shadow-md flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
                 <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
 
                 <div class="flex-1">
@@ -311,12 +361,12 @@
 
     <div id="callback-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-2xl shadow-lg border border-slate-100">
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-slate-100">
-                    <h3 class="text-xl font-bold text-slate-900 uppercase">
+            <div class="relative bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-slate-100 dark:border-slate-800">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white uppercase">
                         Заказать звонок
                     </h3>
-                    <button type="button" class="end-2.5 text-slate-400 bg-transparent hover:bg-slate-100 hover:text-slate-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="callback-modal">
+                    <button type="button" class="end-2.5 text-slate-400 dark:text-slate-500 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="callback-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                         </svg>
@@ -326,12 +376,12 @@
                 <div class="p-4 md:p-5">
                     <form class="space-y-4" action="#">
                         <div>
-                            <label for="name" class="block mb-2 text-sm font-medium text-slate-700">Ваше имя</label>
-                            <input type="text" name="name" id="name" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-3" placeholder="Иван Иванов" required>
+                            <label for="name" class="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Ваше имя</label>
+                            <input type="text" name="name" id="name" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-3 placeholder:text-slate-400 dark:placeholder:text-slate-500" placeholder="Иван Иванов" required>
                         </div>
                         <div>
-                            <label for="phone" class="block mb-2 text-sm font-medium text-slate-700">Номер телефона</label>
-                            <input type="tel" name="phone" id="phone" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-3" placeholder="+7 (999) 000-00-00" required>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Номер телефона</label>
+                            <input type="tel" name="phone" id="phone" class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-3 placeholder:text-slate-400 dark:placeholder:text-slate-500" placeholder="+7 (999) 000-00-00" required>
                         </div>
                         <button type="submit" class="w-full text-white bg-[#4960DA] hover:bg-blue-700 font-bold rounded-xl text-sm px-5 py-3.5 text-center transition">Отправить заявку</button>
                     </form>
@@ -340,49 +390,49 @@
         </div>
     </div>
 
-    <footer class="py-12 bg-[#F1F0FA] text-slate-600 px-4 mt-16 border-t border-slate-200/80">
+    <footer class="py-12 bg-[#F1F0FA] dark:bg-slate-900 text-slate-600 dark:text-slate-400 px-4 mt-16 border-t border-slate-200/80 dark:border-slate-800">
         <div class="max-w-[1280px] mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
             <div class="space-y-2 text-xs">
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Оплата</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Контакты</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Поставщикам</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Демонстрация</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Реклама на сайте</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Оплата</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Контакты</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Поставщикам</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Демонстрация</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Реклама на сайте</p>
             </div>
             <div class="space-y-2 text-xs">
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Доставка</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Достижения</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Лаборатория</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Карточка предприятия</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Политика конфиденциальности</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Доставка</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Достижения</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Лаборатория</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Карточка предприятия</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Политика конфиденциальности</p>
             </div>
             <div class="space-y-2 text-xs">
-                <p class="font-bold text-slate-800 mb-1">Каталог</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Бетон и жидкие смеси</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Заборы и бордюры</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Утеплители</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Сухие смеси</p>
+                <p class="font-bold text-slate-800 dark:text-slate-200 mb-1">Каталог</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Бетон и жидкие смеси</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Заборы и бордюры</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Утеплители</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Сухие смеси</p>
             </div>
             <div class="space-y-2 text-xs pt-5 md:pt-0">
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Облицовочный кирпич</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Строительные блоки</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Инструменты и сопутствующие товары</p>
-                <p class="hover:text-[#4960DA] cursor-pointer transition">Тротуарная плитка</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Облицовочный кирпич</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Строительные блоки</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Инструменты и сопутствующие товары</p>
+                <p class="hover:text-[#4960DA] dark:hover:text-blue-400 cursor-pointer transition">Тротуарная плитка</p>
             </div>
             <div
                 class="col-span-2 lg:col-span-1 flex flex-col items-start lg:items-end justify-between gap-4 pt-4 lg:pt-0">
                 <div class="text-right lg:w-full">
-                    <span class="font-black text-lg text-slate-900 tracking-tight">FABRIKA<span
-                            class="text-red-650 bg-red-100 px-1 rounded-sm ml-0.5">FB</span></span>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">BETONOV</p>
+                    <span class="font-black text-lg text-slate-900 dark:text-white tracking-tight">FABRIKA<span
+                            class="text-red-650 bg-red-100 dark:bg-red-500/20 px-1 rounded-sm ml-0.5">FB</span></span>
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">BETONOV</p>
                 </div>
                 <div class="flex gap-2">
                     <span
-                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-700 cursor-pointer hover:bg-[#4960DA] hover:text-white transition">VK</span>
+                        class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 cursor-pointer hover:bg-[#4960DA] hover:text-white transition">VK</span>
                     <span
-                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-700 cursor-pointer hover:bg-[#4960DA] hover:text-white transition">YT</span>
+                        class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 cursor-pointer hover:bg-[#4960DA] hover:text-white transition">YT</span>
                     <span
-                        class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-700 cursor-pointer hover:bg-[#4960DA] hover:text-white transition">TG</span>
+                        class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 cursor-pointer hover:bg-[#4960DA] hover:text-white transition">TG</span>
                 </div>
             </div>
         </div>
@@ -410,6 +460,24 @@
                 }
             });
         });
+
+        // --- DARK MODE TOGGLE ---
+        (function () {
+            var html = document.documentElement;
+            var toggleBtn = document.getElementById('theme-toggle');
+
+            function setTheme(isDark) {
+                html.classList.toggle('dark', isDark);
+                try {
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                } catch (e) { /* localStorage yo'q bo'lsa, jim o'tamiz */ }
+            }
+
+            toggleBtn.addEventListener('click', function () {
+                var isDark = html.classList.contains('dark');
+                setTheme(!isDark);
+            });
+        })();
     </script>
 </body>
 
